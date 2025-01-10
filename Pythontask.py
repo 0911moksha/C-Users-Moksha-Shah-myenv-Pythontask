@@ -5,6 +5,7 @@ def load_csv():
         with open('question and answers details.csv',mode ="r") as file:
             csv_reader = csv.reader(file)
             next(csv_reader)
+            score = 0
             for row in csv_reader:
                 question_text = row[1]
                 optionA = row[2]
@@ -16,21 +17,20 @@ def load_csv():
                 print(f"(B){optionB}")
                 print(f"(C){optionC}")
                 print(f"(D){optionD}")
-                option = input("Enter options[A/B/C/D]").upper()
+                input_answer = input("Enter options[A/B/C/D]").upper()
                 for option in question_text:
                     if option in ['A','B','C','D']:
                         return True
                 answer = row[6]
-                print("Correct answer")
+                print(f"Correct answer is:")
                 if not option == answer:
-                    print(answer)    
-                     
-                    #correct_answer = input("Enter answer[A/B/C/D]")
-                    #if correctc_answer in ['A','B','C','D']:
-                        #print("Correct answer")
-                    #else:
-                        #print("Incorrect answer")
-                        #question_text+=1                   
+                    print(answer)
+                if input_answer == answer:
+                        score+=1
+                        print("The answer is correct")
+                else:
+                    print("Invalid")
+                print(f"Your score is {score}")            
                     
     except FileNotFoundError:
         print(f"File {file} not found") 
