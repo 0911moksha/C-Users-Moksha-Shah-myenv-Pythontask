@@ -2,10 +2,11 @@ import csv
 #to load the csv file
 def load_csv():
     try:
-        with open('question and answers details.csv',mode ="r") as file:
+        with open('question and answers details.csv',mode ="r") as file:            
             csv_reader = csv.reader(file)
             next(csv_reader)
             score = 0
+            name = input("Enter participant name")
             for row in csv_reader:
                 question_text = row[1]
                 optionA = row[2]
@@ -30,7 +31,8 @@ def load_csv():
                         print("The answer is correct")
                 else:
                     print("Invalid")
-                print(f"Your score is {score}")            
+                print(f"Your score is {score}") 
+        print(f"Name :{name} and score :{score}")           
                     
     except FileNotFoundError:
         print(f"File {file} not found") 
